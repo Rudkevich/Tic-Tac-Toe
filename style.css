@@ -1,0 +1,363 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: SpecialElite;
+    src: url('/fonts/SpecialElite.woff2') format('woff2');
+    font-weight: 400;
+}
+
+@font-face{
+    font-family: Heedo;
+    src: url('/fonts/Heebo-Bold.woff2');
+    font-weight: 600;
+}
+
+:root{
+    --main-bg-color: #080916;
+    --main-color-one:#A84DB4;
+    --main-color-two:#2666dd;
+    --main-color-fhree:#33C3C4;
+    --main-color-five:#01F0FD;
+    --main-color-six:#fff;
+}
+body{
+    background: var(--main-bg-color);
+    filter: saturate(3);
+}
+.game__start{
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.game__start-title{
+    font-size: 180px;
+    font-family: SpecialElite;
+    color: var(--main-color-one);
+    user-select:none;
+    display: flex;
+    letter-spacing: 2px;
+}
+.title-1{
+    padding-left: 20px;
+    padding-top: 30px;
+    padding-right: 20px;
+}
+.game__start-btn{
+    background: var(--main-bg-color);
+    position: relative;
+    z-index: 3;
+    font-family: Heedo;
+    margin-top: 30px;
+    font-size: 30px;
+    letter-spacing: 1px;
+    padding: 10px 25px;
+    font-weight: 600;
+    color:var(--main-color-two);
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    transition: 0.6s ease;
+}
+.game__start-btn:hover{
+    color: var(--main-color-one);
+    box-shadow: 0 0 2px var(--main-color-one),0 0 25px var(--main-color-one),0 0 30px var(--main-color-one);
+}
+
+.game__start-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    background: var(--main-bg-color);
+    filter: saturate(2);
+    overflow: hidden;
+}
+.colorBox{
+    z-index: 2;
+    filter: brightness(1.1);
+    transition: 2s ease;
+    position: relative;
+    margin: 2px;
+    background: var(--main-bg-color);
+}
+.colorBox:hover{
+    background: var(--main-color-fhree);
+    transition-duration: 0s;
+}
+
+.game__start-animation{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--main-color-five);
+    filter: blur(55px);
+    animation: animBack 5s linear infinite;
+}
+
+@keyframes animBack {
+    0%{
+        top: -60px;
+    }
+    100%{
+        top: 130%;
+    }
+}
+
+/* ==================== */
+.game__section{
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background: var(--main-bg-color);
+    /* filter: saturate(2); */
+}
+.boom{
+    position: absolute;
+    top: 25%;
+    left: 10%;
+}
+
+.boom svg path{
+    animation: textAnim 10s infinite;
+}
+.monkey svg{
+    transform: scale(0.7);
+    position: absolute;
+    top: 10%;
+    right: 4%;
+}
+.monkey svg path {
+    fill: var(--main-color-one);
+    filter: drop-shadow(0px 0px 3px  var(--main-color-five));
+}
+.bear{
+    position: absolute;
+    bottom: 2%;
+    left: 18%;
+    transform: scale(0.7);
+}
+.bear svg path  {
+    filter: saturate(2);
+    fill: var(--main-color-one);
+}
+.box-quote{
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+}
+q{
+    color: var(--main-color-six);
+    font-size: 20px;
+    font-family: Heedo;
+}
+
+
+@keyframes textAnim{
+    25%{
+        fill: var(--main-color-fhree);
+    }
+    50%{
+        fill: var(--main-color-one);
+    }
+    75%{
+        fill: var(--main-color-two);
+    }
+    100%{
+        fill: var(--main-color-six);
+    }
+}
+.res{
+    color:var(--main-color-five);
+    font-size: 70px;
+    letter-spacing: 2px;
+    font-family: SpecialElite;
+    height: 75px;
+}
+.res__name{
+    font-size: 20px;
+    font-family: SpecialElite;
+    color: var(--main-color-six);
+}
+.res__total{
+    width: 250px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.res__total-x,
+.res__total-o{
+    font-family: Heedo;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding-left: 10px;
+    color: var(--main-color-one);
+}
+.game{
+    width: 360px;
+    height: 360px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    outline: 3px solid var(--main-color-six);
+}
+
+.field{
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--main-color-six);
+    cursor: pointer;
+}
+.circle{
+    width: 100%;
+    height: 100%;
+    stroke-dasharray:283;
+    stroke-dashoffset:283;
+    animation: draw 1s forwards;
+}
+.cross{
+    width: 100%;
+    height: 100%;
+}
+.first{
+    stroke-dasharray:125;
+    stroke-dashoffset:125;
+    animation: draw 0.5s forwards;
+}
+.second{
+    stroke-dasharray:125;
+    stroke-dashoffset:125;
+    animation: draw 0.5s  0.5s forwards;
+}
+@keyframes draw{
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.new-game{
+    margin-top: 15px;
+    border: none;
+    outline: none;
+    background-color: var(--main-color-fhree);
+    font-family: Heedo;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 15px 30px;
+    color: var(--main-bg-color);
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+.new-game:hover{
+    box-shadow: 0 0 2px var(--main-color-five),0 0 25px var(--main-color-five),0 0 30px var(--main-color-five);
+}
+
+.active{
+    background: var(--main-color-two);
+}
+@media (max-width: 1886px) {
+    .bear{
+        left: 8%;
+    }
+}
+@media (max-width: 1466px) {
+    .bear{
+        left: 1%;
+    }
+    .boom{
+        left: 2%;
+    }
+    .box-quote{
+        right: 2%;
+    }
+}
+
+@media (max-width: 1302px) {
+    .bear{
+        transform: scale(0.5);
+    }
+    .boom{
+        transform: scale(0.5);
+        transform: rotate(-30deg);
+    }
+    .monkey svg{
+        transform: scale(0.5);
+        top: 1%;
+        right: 1%;
+    }
+    .box-quote{
+        width: 400px;
+        right: 2%;
+    }
+}
+@media (max-width: 1082px) {
+    .bear{
+        display: none;
+    }
+    .boom{
+        display: none;
+    }
+    .monkey svg{
+        display: none;
+    }
+    .box-quote{
+        height: 70px;
+        margin-top: 10px;
+        position: relative;
+        bottom: 2%;
+        left: 0;
+        text-align: center;
+        
+    }
+}
+
+@media (max-width: 1115px) {
+    .game__start-title{
+        font-size: 100px;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 610px) {
+.game__start-title{
+    font-size: 70px;
+    letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 466px) {
+.game__start-title{
+    font-size: 50px;
+    letter-spacing: 2px;
+    }
+.game__start-btn{
+    font-size: 20px;
+   
+    }
+}
+
+
